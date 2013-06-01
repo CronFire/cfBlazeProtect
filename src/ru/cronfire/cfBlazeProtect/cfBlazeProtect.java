@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -17,10 +18,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 
 public class cfBlazeProtect extends JavaPlugin implements Listener {
-	
-	  public static Logger log = Logger.getLogger("Minecraft");
-	  public static PluginDescriptionFile pdfFile;
-	  public FileConfiguration config;
+  public static Logger log = Logger.getLogger("Minecraft");
+  public static PluginDescriptionFile pdfFile;
+  public FileConfiguration config;
 
 public void onEnable() {
 	try {
@@ -32,7 +32,6 @@ public void onEnable() {
 				ex.printStackTrace();
 		    }
 
-	this.config = getConfig();
 	loadConfig();
 	reloadConfig();
 
@@ -60,13 +59,15 @@ public void loadConfig() {
 
 @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 public void onBlockBreak(BlockBreakEvent event) {
+	String worldname = event.getPlayer().getWorld().getName();
+	Player player = event.getPlayer();
 	
-	if(event.getPlayer().getWorld().getName().contains("nether")) { //equalsIgnoreCase("world_nether") // special for bukkit users
+	if(worldname.equalsIgnoreCase("world_nether") || worldname.contains("nether")) {  //special for bukkit users
 		if (event.getBlock().getType() == Material.MOB_SPAWNER) {
         	CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
-
-        	if ((spawner.getSpawnedType() == EntityType.BLAZE) && (!event.getPlayer().hasPermission("blazeprotect.exempt"))) {
-            	event.getPlayer().sendMessage(ChatColor.RED + getConfig().getString("message"));
+        	
+        	if ((spawner.getSpawnedType() == EntityType.BLAZE) && (!player.hasPermission("blazeprotect.exempt"))) {
+            	player.sendMessage(ChatColor.RED + getConfig().getString("message"));//debug
             	event.setCancelled(true);
         	}
     	}
