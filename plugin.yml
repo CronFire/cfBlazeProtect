@@ -1,6 +1,6 @@
-name: BlazeProtect
-main: ru.cronfire.blazeprotect.blazeprotect
-version: 0.2
+name: cfBlazeProtect
+main: ru.cronfire.cfBlazeProtect.cfBlazeProtect
+version: 1.0
 description: Plugin will protect your blaze spawners from griefing.
 authors: [Zeluboba]
 maintainer: Zeluboba

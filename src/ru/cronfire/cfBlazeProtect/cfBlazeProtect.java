@@ -61,7 +61,7 @@ public void loadConfig() {
 @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 public void onBlockBreak(BlockBreakEvent event) {
 	
-	if(event.getPlayer().getWorld().getName().contains("nether")) { //equalsIgnoreCase("world_nether")
+	if(event.getPlayer().getWorld().getName().contains("nether")) { //equalsIgnoreCase("world_nether") // special for bukkit users
 		if (event.getBlock().getType() == Material.MOB_SPAWNER) {
         	CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
 
