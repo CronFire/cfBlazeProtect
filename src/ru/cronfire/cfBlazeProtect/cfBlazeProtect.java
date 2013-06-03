@@ -17,33 +17,19 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 
 public class cfBlazeProtect extends JavaPlugin implements Listener {
-  public static Logger log = Logger.getLogger("Minecraft");
-  public static PluginDescriptionFile pdfFile;
 
 public void onEnable() {
-	try {
-		if (!getDataFolder().exists()) {
-		    log.info("[cfBlazeProtect] DataFolder not found, creating a new one.");
-		    getDataFolder().mkdir();
-		    }
-		    } catch (Exception ex) {
-				ex.printStackTrace();
-		    }
-
 	loadConfig();
 	reloadConfig();
 
 	PluginManager pm = getServer().getPluginManager();
 	pm.registerEvents(this, this);
 
-	pdfFile = getDescription();
-	PluginDescriptionFile pdfFile = getDescription();
-
-	log.info("[" + pdfFile.getName() + "]" + " version " + pdfFile.getVersion() + " is enabled!");
+	getLogger().info(" version " + getDescription().getVersion() + " is enabled!");
 }
 
 public void onDisable() {
-	log.info("[" + pdfFile.getName() + "]" + " version " + pdfFile.getVersion() + " is disabled!");
+	getLogger().info(" version " + getDescription().getVersion() + " is disabled!");
 }
 		  
 public void loadConfig() { 
@@ -51,7 +37,7 @@ public void loadConfig() {
 
 	getConfig().options().copyDefaults(true);
 	saveConfig();
-	log.info("[cfBlazeProtect] Successfully loaded configuration file.");
+	getLogger().info("Successfully loaded configuration file.");
 }
 
 @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
