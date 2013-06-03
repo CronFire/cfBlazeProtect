@@ -230,4 +230,5 @@ bin/
 .classpath
 .project
 
+.git/
 

@@ -27,11 +27,11 @@ public void onEnable() {
 	PluginManager pm = getServer().getPluginManager();
 	pm.registerEvents(this, this);
 
-	log.info(" version " + getDescription().getVersion() + " is enabled!");
+	log.info("[" + getDescription().getName() + "]" + " Enabled " + getDescription().getName() + " v" + getDescription().getVersion());
 }
 
 public void onDisable() {
-	log.info(" version " + getDescription().getVersion() + " is disabled!");
+	log.info("[" + getDescription().getName() + "]" + " Disabled " + getDescription().getName() + " v" + getDescription().getVersion());
 }
 		  
 public void loadConfig() { 
@@ -40,7 +40,7 @@ public void loadConfig() {
 
 	config.options().copyDefaults(true);
 	saveConfig();
-	log.info("Successfully loaded configuration file.");
+	log.info("[" + getDescription().getName() + "]" + " Successfully loaded configuration file.");
 }
 
 @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
