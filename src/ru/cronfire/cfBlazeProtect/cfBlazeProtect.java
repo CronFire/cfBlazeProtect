@@ -34,7 +34,7 @@ public void onEnable() {
 	reloadConfig();
 
 	PluginManager pm = getServer().getPluginManager();
-	pm.registerEvents(new this, this);
+	pm.registerEvents(this, this);
 
 	pdfFile = getDescription();
 	PluginDescriptionFile pdfFile = getDescription();
