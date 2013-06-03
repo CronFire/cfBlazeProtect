@@ -34,7 +34,7 @@ public void onEnable() {
 	reloadConfig();
 
 	PluginManager pm = getServer().getPluginManager();
-	pm.registerEvents(new cfBlazeProtect(), this);
+	pm.registerEvents(new this, this);
 
 	pdfFile = getDescription();
 	PluginDescriptionFile pdfFile = getDescription();
@@ -64,7 +64,7 @@ public void onBlockBreak(BlockBreakEvent event) {
         	CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
         	
         	if ((spawner.getSpawnedType() == EntityType.BLAZE) && (!player.hasPermission("blazeprotect.exempt"))) {
-            	player.sendMessage(ChatColor.RED + getConfig().getString("Message")); //TODO: Debug
+            	player.sendMessage(ChatColor.RED + getConfig().getString("Message"));
             	event.setCancelled(true);
         	}
     	}
