@@ -50,7 +50,7 @@ public void onDisable() {
 		  
 public void loadConfig() {
 	this.config = getConfig(); 
-	this.config.addDefault("message", "You are not allowed to do it!");
+	this.config.addDefault("Message", "You are not allowed to do it!");
 
 	getConfig().options().copyDefaults(true);
 	saveConfig();
@@ -61,13 +61,14 @@ public void loadConfig() {
 public void onBlockBreak(BlockBreakEvent event) {
 	String worldname = event.getPlayer().getWorld().getName();
 	Player player = event.getPlayer();
+	this.config = getConfig();
 	
-	if(worldname.equalsIgnoreCase("world_nether") || worldname.contains("nether")) {  //special for bukkit users
+	if(worldname.equalsIgnoreCase("world_nether") || worldname.contains("nether")) {  //for bukkit users
 		if (event.getBlock().getType() == Material.MOB_SPAWNER) {
         	CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
         	
         	if ((spawner.getSpawnedType() == EntityType.BLAZE) && (!player.hasPermission("blazeprotect.exempt"))) {
-            	player.sendMessage(ChatColor.RED + getConfig().getString("message"));//debug
+            	player.sendMessage(ChatColor.RED + this.config.getString("Message")); //TODO: Debug
             	event.setCancelled(true);
         	}
     	}
