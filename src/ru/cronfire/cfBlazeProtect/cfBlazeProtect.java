@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.CreatureSpawner;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,6 +20,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class cfBlazeProtect extends JavaPlugin implements Listener {
   public static Logger log = Logger.getLogger("Minecraft");
   public static PluginDescriptionFile pdfFile;
+  public FileConfiguration config;
 
 public void onEnable() {
 	try {
@@ -46,8 +48,9 @@ public void onDisable() {
 	log.info("[" + pdfFile.getName() + "]" + " version " + pdfFile.getVersion() + " is disabled!");
 }
 		  
-public void loadConfig() { 
-	getConfig().addDefault("Message", "You are not allowed to do it!");
+public void loadConfig() {
+	this.config = getConfig(); 
+	this.config.addDefault("Message", "You are not allowed to do it!");
 
 	getConfig().options().copyDefaults(true);
 	saveConfig();
@@ -58,13 +61,14 @@ public void loadConfig() {
 public void onBlockBreak(BlockBreakEvent event) {
 	String worldname = event.getPlayer().getWorld().getName();
 	Player player = event.getPlayer();
+	this.config = getConfig();
 	
 	if(worldname.equalsIgnoreCase("world_nether") || worldname.contains("nether")) {  //for bukkit users
 		if (event.getBlock().getType() == Material.MOB_SPAWNER) {
         	CreatureSpawner spawner = (CreatureSpawner) event.getBlock().getState();
         	
         	if ((spawner.getSpawnedType() == EntityType.BLAZE) && (!player.hasPermission("blazeprotect.exempt"))) {
-            	player.sendMessage(ChatColor.RED + getConfig().getString("Message")); //TODO: Debug
+            	player.sendMessage(ChatColor.RED + this.config.getString("Message")); //TODO: Debug
             	event.setCancelled(true);
         	}
     	}
