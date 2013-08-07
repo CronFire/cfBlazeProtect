@@ -16,6 +16,15 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Logger;
 
+/*
+ * COPYRIGHT (c) 2013 Zeluboba (Roman Zabaluev)
+ * This file is part of ${PROJECT_NAME}
+ * Package: ${PACKAGE_NAME}
+ * Date: ${DATE}
+ * Time: ${TIME}
+ * DO NOT DISTRIBUTE.
+ */
+
 public class cfBlazeProtect extends JavaPlugin implements Listener {
 	public static Logger log = Logger.getLogger("Minecraft");
 	public FileConfiguration config;
