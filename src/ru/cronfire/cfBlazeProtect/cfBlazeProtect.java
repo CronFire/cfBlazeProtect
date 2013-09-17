@@ -4,7 +4,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World.Environment;
 import org.bukkit.block.CreatureSpawner;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -14,20 +13,16 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.logging.Logger;
-
 /*
  * COPYRIGHT (c) 2013 Zeluboba (Roman Zabaluev)
- * This file is part of ${PROJECT_NAME}
- * Package: ${PACKAGE_NAME}
- * Date: ${DATE}
- * Time: ${TIME}
+ * This file is part of cfBlazeProtect
+ * Package: ru.cronfire.cfBlazeProtect
+ * Date: 03.06.2013
+ * Time: 20:28
  * DO NOT DISTRIBUTE.
  */
 
 public class cfBlazeProtect extends JavaPlugin implements Listener {
-	public static Logger log = Logger.getLogger("Minecraft");
-	public FileConfiguration config;
 
 	public void onEnable() {
 		loadConfig();
@@ -36,22 +31,22 @@ public class cfBlazeProtect extends JavaPlugin implements Listener {
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvents(this, this);
 
-		log.info("[cfBlazeProtect]" + " Enabled cfBlazeProtect v" + getDescription().getVersion());
+		getLogger().info("Enabled cfBlazeProtect v" + getDescription().getVersion());
 	}
 
 	public void onDisable() {
-		log.info("[cfBlazeProtect]" + " Disabled cfBlazeProtect v" + getDescription().getVersion());
+		getLogger().info("Disabled cfBlazeProtect v" + getDescription().getVersion());
 	}
 
 	public void loadConfig() {
-		this.config = getConfig();
-		this.config.addDefault("Message", "&cYou are not allowed to do it!");
+		getConfig().addDefault("Message", "&cYou are not allowed to do it!");
 
-		config.options().copyDefaults(true);
+		getConfig().options().copyDefaults(true);
 		saveConfig();
-		log.info("[cfBlazeProtect] Successfully loaded configuration file.");
+		getLogger().info("Successfully loaded configuration file.");
 	}
 
+	//TODO:equals()
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	public void blazeProtect(BlockBreakEvent event) {
 		Player pl = event.getPlayer();
