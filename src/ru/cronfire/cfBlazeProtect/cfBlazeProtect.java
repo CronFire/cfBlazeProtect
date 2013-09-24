@@ -45,8 +45,9 @@ public class cfBlazeProtect extends JavaPlugin implements Listener {
 	}
 
 	//TODO:equals()
+	@SuppressWarnings("unused")
 	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-	public void blazeProtect(final BlockBreakEvent event) {
+	public void onBlockBreakEvent(final BlockBreakEvent event) {
 		final Player pl = event.getPlayer();
 
 		if(pl.getWorld().getEnvironment().equals(Environment.NETHER)) {
