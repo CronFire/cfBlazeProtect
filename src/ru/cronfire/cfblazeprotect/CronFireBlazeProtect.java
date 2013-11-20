@@ -30,11 +30,11 @@ public class CronFireBlazeProtect extends JavaPlugin implements Listener {
 
 		getServer().getPluginManager().registerEvents(this, this);
 
-		getLogger().info("Enabled cfBlazeProtect v" + getDescription().getVersion());
+		getLogger().info("Enabled " + getName() + " v" + getDescription().getVersion());
 	}
 
 	public void onDisable() {
-		getLogger().info("Disabled cfBlazeProtect v" + getDescription().getVersion());
+		getLogger().info("Disabled " + getName() " v" + getDescription().getVersion());
 	}
 
 	@SuppressWarnings("WeakerAccess")
