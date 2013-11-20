@@ -34,7 +34,7 @@ public class CronFireBlazeProtect extends JavaPlugin implements Listener {
 	}
 
 	public void onDisable() {
-		getLogger().info("Disabled " + getName() " v" + getDescription().getVersion());
+		getLogger().info("Disabled " + getName() + " v" + getDescription().getVersion());
 	}
 
 	@SuppressWarnings("WeakerAccess")
